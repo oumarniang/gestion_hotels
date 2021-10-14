@@ -1,0 +1,18 @@
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Hotel checker
+</h1>
+<section>
+  <a href="{{ url_for('main.reservations') }}">
+    <img src="{{ url_for('static', filename='images/hotel_icon_white.png') }}"" alt="icon hotel">
+  </a>
+  <h2 class="subtitle">
+    Gestion de Réservation de Chambres d'Hôtel <br>grâce à l’Intelligence Artificielle
+  </h2>
+</section>
+
+{% endblock %}

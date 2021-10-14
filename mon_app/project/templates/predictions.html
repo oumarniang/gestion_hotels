@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Prédiction client #{{data_client}}
+</h1>
+<div>
+    <p>
+        L'état de prédictions est : 
+    </p>
+
+    <h2 class="title">
+        {{predict_result}} 
+    </h2>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Bienvenue chez nous!
+</h1>
+<section>
+    <img src="{{ url_for('static', filename='images/img1.jpg') }}"" alt="image chambre">
+    <p>
+        La conpagnie MyHotel vous souhaite la bienvenue sur sa plateforme, il nous reste encore des chambres libres, pour vous recevoir dans les meilleurs conditions, nous vous demandons de remplir la formaulaire ci dessous
+    </p>
+    <a class="button" href="#">Default Button</a>
+</section>
+{% endblock %}
