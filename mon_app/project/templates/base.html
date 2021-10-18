@@ -9,12 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flask Auth Example</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-    <section class="hero is-primary is-fullheight">
+    <section class="hero is-fullheight">
 
-        <div class="hero-head">
+        <div class="hero-head has-background-grey-dark">
             <nav class="navbar">
                 <div class="container">
 
@@ -52,10 +55,8 @@
         </div>
 
         <div class="hero-body">
-            <div class="container has-text-centered">
                {% block content %}
                {% endblock %}
-            </div>
         </div>
     </section>
 </body>

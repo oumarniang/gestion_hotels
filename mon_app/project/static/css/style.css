@@ -1,0 +1,68 @@
+
+
+/* page reservations  */
+
+.rotate {
+
+    transform:  translateX(20px) rotate(-90deg);
+
+    /* Legacy vendor prefixes that you probably don't need... */
+  
+    /* Safari */
+    -webkit-transform: translateX(20px) rotate(-90deg);
+  
+    /* Firefox */
+    -moz-transform: translateX(20px) rotate(-90deg);
+  
+    /* IE */
+    -ms-transform: translateX(20px) rotate(-90deg);
+  
+    /* Opera */
+    -o-transform: translateX(20px) rotate(-90deg);
+  
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+  }
+
+
+  .page-reservations{
+      background-color:#FFFFFF;
+  }
+
+  .navbar-item{
+      color: azure;
+  }
+
+  .title-reservations{
+    color: #4a4a4a;
+    margin-bottom: 40px!important;
+  }
+
+  .image-home{
+    background-color: hsl(171, 100%, 41%);
+    border-radius: 5%;
+    margin: 15px 15px 20px 15px;
+  }
+  .image-home:hover{
+    opacity: 0.8;
+  }
+
+  .image{
+      margin: auto;
+  }
+
+/* prediction display */
+
+  .notification button{
+    position: absolute;
+    right: 70px;
+    bottom: 30px;
+  }
+
+  .prediction-message{
+      position: relative;
+      top: -17px;
+      left: 20px;
+      font-size: 1.2rem;
+  }

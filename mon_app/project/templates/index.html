@@ -3,13 +3,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title is-1">Hotel checker</h1>
-<section>
-  <a href="{{ url_for('main.reservations') }}">
-    <img src="{{ url_for('static', filename='images/hotel_icon_white.png') }}"" alt="icon hotel">
-  </a>
-  <h2 class="subtitle is-2">
-    Gestion de Réservation de Chambres d'Hôtel <br>grâce à l’Intelligence Artificielle
-  </h2>
-</section>
+
+<div class="container has-text-centered">
+  <h1 class="title is-1">Hotel checker</h1>
+  <section>
+    <a href="{{ url_for('main.reservations') }}">
+      <img src="{{ url_for('static', filename='images/hotel_icon_white.png') }}"" alt="icon hotel" class="image-home">
+    </a>
+    <h2 class="subtitle is-2">
+      Gestion de Réservation de Chambres d'Hôtel <br>grâce à l’Intelligence Artificielle
+    </h2>
+  </section>
+</div>
+
 {% endblock %}

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title is-2">Suivi des réservations mensuelles</h1>
+<div class="container has-text-centered">
+<h1 class="title is-2 title-reservations title-reservations">Suivi des réservations mensuelles</h1>
 <section>
   <div class="table-container">
     <table class="table is-hoverable">
@@ -13,15 +14,15 @@
           <th>arrival date week number</th>
           <th>arrival date day_of month</th>
           <th>stays in week nights</th>
-          <th>adults</th>
-          <th>children</th>
-          <th>babies</th>
+          <th class="rotate">adults</th>
+          <th class="rotate">children</th>
+          <th class="rotate">babies</th>
           <th>is repeated guest</th>
-          <th>previous cancellations</th>
+          <th>previous cancel- lations</th>
           <th>previous bookings not canceled</th>
           <th>booking changes</th>
-          <th>agent</th>
-          <th>company</th>
+          <th class="rotate">agent</th>
+          <th class="rotate">company</th>
           <th>days in waiting list</th>
           <th>adr</th>
           <th>required car parking spaces</th>
@@ -54,7 +55,7 @@
             {{item.adults}}
           </td>
           <td>
-            {{item.children}}
+            {{item.children | int}}
           </td>
           <td>
             {{item.babies}}
@@ -72,10 +73,10 @@
             {{item.booking_changes}}
           </td>
           <td>
-            {{item.agent}}
+            {{item.agent | int}}
           </td>
           <td>
-            {{item.company}}
+            {{item.company | int}}
           </td>
           <td>
             {{item.days_in_waiting_list}}
@@ -101,4 +102,5 @@
     </table>
   </div>
 </section>
+</div>
 {% endblock %}
