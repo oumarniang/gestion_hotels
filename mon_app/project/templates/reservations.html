@@ -1,26 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Réservations
-</h1>
+<h1 class="title is-2">Suivi des réservations mensuelles</h1>
 <section>
-    <p>
-        Voici le suivi des réservations mensuelles
-    </p>
-
-    <table class="table table-striped table-sm table-exploration">
+  <div class="table-container">
+    <table class="table is-hoverable">
       <thead>
         <tr>
           <th>id</th>
-          <th>lead_time</th>
-          <th>arrival_date_year</th>
-          <th>arrival_date_week_number</th>
-          <th>stays_in_week_nights</th>
+          <th>lead time</th>
+          <th>arrival date year</th>
+          <th>arrival date week number</th>
+          <th>arrival date day_of month</th>
+          <th>stays in week nights</th>
           <th>adults</th>
           <th>children</th>
-          <th>days_in_waiting_list</th>
+          <th>babies</th>
+          <th>is repeated guest</th>
+          <th>previous cancellations</th>
+          <th>previous bookings not canceled</th>
+          <th>booking changes</th>
+          <th>agent</th>
+          <th>company</th>
+          <th>days in waiting list</th>
           <th>adr</th>
+          <th>required car parking spaces</th>
+          <th>total of special requests</th>
           <th>Prédiction</th>
         </tr>
       </thead>
@@ -40,6 +45,9 @@
             {{item.arrival_date_week_number}}
           </td>
           <td>
+            {{item.arrival_date_day_of_month}}
+          </td>
+          <td>
             {{item.stays_in_week_nights}}
           </td>
           <td>
@@ -49,21 +57,48 @@
             {{item.children}}
           </td>
           <td>
+            {{item.babies}}
+          </td>
+          <td>
+            {{item.is_repeated_guest}}
+          </td>
+          <td>
+            {{item.previous_cancellations}}
+          </td>
+          <td>
+            {{item.previous_bookings_not_canceled}}
+          </td>
+          <td>
+            {{item.booking_changes}}
+          </td>
+          <td>
+            {{item.agent}}
+          </td>
+          <td>
+            {{item.company}}
+          </td>
+          <td>
             {{item.days_in_waiting_list}}
           </td>
           <td>
             {{item.adr}}
           </td>
           <td>
+            {{item.required_car_parking_spaces}}
+          </td>
+          <td>
+            {{item.total_of_special_requests}}
+          </td>
+          <td>
             <!-- <a href="/predictions/{{item[0]}}" class="navbar-item"> -->
-            <a href="{{url_for('main.predictions', data_client=item)}}" class="navbar-item">
-              Prédiction
-            </a>
+              <a href="{{url_for('main.predictions', data_client=item)}}">
+                <button class="button is-link is-small">Prédiction</button>
+              </a>
           </td>
         </tr>
         {% endfor %}
     </tbody>
     </table>
-
+  </div>
 </section>
 {% endblock %}

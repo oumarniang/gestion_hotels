@@ -1,16 +1,123 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Prédiction client #{{data_client}}
-</h1>
-<div>
-    <p>
-        L'état de prédictions est : 
-    </p>
+<h1 class="title is-2">Prédiction client # {{data_client.id}}</h1>
 
+<div class="box">
+    <p>
+        Etat de prédictions : {{predict_result}}
+    </p>
     <h2 class="title">
         {{predict_result}} 
     </h2>
+    <div>
+        {% if predict_result == 1 %}
+        <figure class="image is-64x64">
+            <img src="{{url_for('static', filename='images/ko.png')}}">
+        </figure>
+        {% else %}
+        <figure class="image is-64x64">
+            <img src="{{url_for('static', filename='images/ok.png')}}">
+        </figure>
+        {% endif %}
+    </div>
+    <h3>{{prediction}}</h3>
 </div>
+
+<div class="columns is-mobile is-centered">
+
+    <table class="column is-three-fifths table is-fullwidth">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">id</th>
+            <td>{{data_client.id}}</td>
+        </tr>
+        <tr>
+            <th scope="row">lead_time</th>
+            <td>{{data_client.lead_time}}</td>
+        </tr>
+        <tr>
+            <th scope="row">arrival_date_year</th>
+            <td>{{data_client.arrival_date_year}}</td>
+        </tr>
+        <tr>
+            <th scope="row">arrival_date_week_number</th>
+            <td>{{data_client.arrival_date_week_number}}</td>
+        </tr>
+        <tr>
+            <th scope="row">arrival_date_day_of_month</th>
+            <td>{{data_client.arrival_date_day_of_month}}</td>
+        </tr>
+        <tr>
+            <th scope="row">stays_in_weekend_nights</th>
+            <td>{{data_client.stays_in_weekend_nights}}</td>
+        </tr>
+        <tr>
+            <th scope="row">stays_in_week_nights</th>
+            <td>{{data_client.stays_in_week_nights}}</td>
+        </tr>
+        <tr>
+            <th scope="row">adults</th>
+            <td>{{data_client.adults}}</td>
+        </tr>
+        <tr>
+            <th scope="row">children</th>
+            <td>{{data_client.children}}</td>
+        </tr>
+        <tr>
+            <th scope="row">babies</th>
+            <td>{{data_client.babies}}</td>
+        </tr>
+        <tr>
+            <th scope="row">is_repeated_guest</th>
+            <td>{{data_client.is_repeated_guest}}</td>
+        </tr>
+        <tr>
+            <th scope="row">previous_cancellations</th>
+            <td>{{data_client.previous_cancellations}}</td>
+        </tr>
+        <tr>
+            <th scope="row">previous_bookings_not_canceled</th>
+            <td>{{data_client.previous_bookings_not_canceled}}</td>
+        </tr>
+        <tr>
+            <th scope="row">booking_changes</th>
+            <td>{{data_client.booking_changes}}</td>
+        </tr>
+        <tr>
+            <th scope="row">agent</th>
+            <td>{{data_client.agent}}</td>
+        </tr>
+        <tr>
+            <th scope="row">company</th>
+            <td>{{data_client.company}}</td>
+        </tr>
+        <tr>
+            <th scope="row">days_in_waiting_list</th>
+            <td>{{data_client.days_in_waiting_list}}</td>
+        </tr>
+        <tr>
+            <th scope="row">adr</th>
+            <td>{{data_client.adr}}</td>
+        </tr>
+        <tr>
+            <th scope="row">required_car_parking_spaces</th>
+            <td>{{data_client.required_car_parking_spaces}}</td>
+        </tr>
+        <tr>
+            <th scope="row">total_of_special_requests</th>
+            <td>{{data_client.total_of_special_requests}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
 {% endblock %}

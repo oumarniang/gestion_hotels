@@ -64,17 +64,26 @@ def reservations():
 @main.route('/predictions/<data_client>', methods = ['POST', 'GET'])
 @login_required
 def predictions(data_client):
-    
-    sample = ast.literal_eval(data_client)
-    del sample['id']
-    # print(sample)
-    df = pd.DataFrame.from_dict([sample])
-    print(df)
 
+    #  transformation data_client en dataframe
+    sample = ast.literal_eval(data_client)
+    # infos_clients pour rappel affichage
+    infos_client = sample.copy()
+    # suppression index
+    del sample['id']
+    #  création dataframe individu à tester
+    df = pd.DataFrame.from_dict([sample])
+
+    # ouverture modèle & prédiction
     model_pred = pickle.load(open('project/data/model.pkl','rb'))
     predict_result = model_pred.predict(df)
+    if(predict_result == 0):
+        prediction = "Risque d'annulation faible"
+    else:
+        prediction = "Risque d'annulation élevé"
 
-    return render_template('predictions.html', data_client=data_client, predict_result=predict_result[0])
+    #  render template avec paramètres
+    return render_template('predictions.html', data_client=infos_client, predict_result=predict_result[0], prediction=prediction)
 
 
 ## Page Accueil
