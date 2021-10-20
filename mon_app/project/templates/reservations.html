@@ -32,7 +32,8 @@
       </thead>
       <tbody>
         {% for item in clients_test %}
-        <tr>
+        {% set item_data = '{"id":"' ~ item.id ~ '","lead_time":"' ~ item.lead_time ~ '","arrival_date_year":"' ~ item.arrival_date_year ~ '","arrival_date_week_number":"' ~item.arrival_date_week_number~ '","arrival_date_day_of_month":"' ~item.arrival_date_day_of_month~ '","stays_in_week_nights":"' ~item.stays_in_week_nights~ '","adults":"' ~item.adults~ '","children":"' ~item.children|int~ '","babies":"' ~item.babies~ '","is_repeated_guest":"' ~item.is_repeated_guest~ '","previous_cancellations":"' ~item.previous_cancellations~ '","previous_bookings_not_canceled":"' ~item.previous_bookings_not_canceled~ '","booking_changes":"' ~item.booking_changes~ '","agent":"' ~item.agent|int~ '","company":"' ~item.company|int~ '","days_in_waiting_list":"' ~item.days_in_waiting_list~ '","adr":"' ~item.adr~ '","required_car_parking_spaces":"' ~item.required_car_parking_spaces~ '","total_of_special_requests":"' ~item.total_of_special_requests~ '"}' %}
+        <tr class="item" data-item={{item_data}}>
           <td>
             {{item.id}}
           </td>
@@ -55,7 +56,7 @@
             {{item.adults}}
           </td>
           <td>
-            {{item.children | int}}
+            {{item.children|int}}
           </td>
           <td>
             {{item.babies}}
@@ -73,10 +74,10 @@
             {{item.booking_changes}}
           </td>
           <td>
-            {{item.agent | int}}
+            {{item.agent|int}}
           </td>
           <td>
-            {{item.company | int}}
+            {{item.company|int}}
           </td>
           <td>
             {{item.days_in_waiting_list}}
@@ -91,7 +92,6 @@
             {{item.total_of_special_requests}}
           </td>
           <td>
-            <!-- <a href="/predictions/{{item[0]}}" class="navbar-item"> -->
               <a href="{{url_for('main.predictions', data_client=item)}}">
                 <button class="button is-link is-small">Prédiction</button>
               </a>
@@ -103,4 +103,7 @@
   </div>
 </section>
 </div>
+
+<script src="{{ url_for('static', filename="js/prediction.js") }}"></script>
+
 {% endblock %}

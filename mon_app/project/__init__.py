@@ -3,8 +3,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager 
-
-#import flask_monitoringdashboard as dashboard
+import flask_monitoringdashboard as dashboard
 
 import wtforms
 
@@ -14,8 +13,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     
-    #dashboard.config.init_from(file='/config.cfg')
-    #dashboard.bind(app)
+    dashboard.config.init_from(file='/config.cfg')
+    dashboard.bind(app)
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'

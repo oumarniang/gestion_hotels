@@ -8,6 +8,7 @@ import requests
 import json
 import pandas as pd
 import ast
+import flask_monitoringdashboard as dashboard
 
 main = Blueprint('main', __name__)
 
@@ -57,8 +58,21 @@ def reservations():
     # print(result_data_list)
     conn.close()
 
-    return render_template('reservations.html', clients_test=result_data_list )
+    clients_json = json.dumps(result_data_list)
+    # print(clients_json)
+
+    return render_template('reservations.html', clients_test=result_data_list, clients_json=clients_json )
+
+## Page de prédictions
+@main.route('/predictions_test', methods = ['POST', 'GET'])
+@login_required
+def predictions_test():
+
+    if request.method == "POST":
+        clicked=request.get_json()
+        print(clicked)
  
+    return "<p>Hello, World!</p>"
 
 ## Page de prédictions
 @main.route('/predictions/<data_client>', methods = ['POST', 'GET'])
