@@ -3,10 +3,9 @@
 {% block content %}
 <div class="container has-text-centered">
 <h1 class="title is-2">Prédiction client # {{data_client.id}}</h1>
-
 <div class="notification">
     <h2 class="subtitle is-4">
-        Etat de prédictions : {{predict_result}} 
+        Etat de prédiction : {{predict_result}} 
     </h2>
     <div class="container-prediction">
         {% if predict_result == 1 %}
@@ -29,7 +28,6 @@
         <button class="button">Réservations</button>
     </a>
 </div>
-
     <table class="table is-fullwidth">
         <thead>
         <tr>
@@ -106,10 +104,7 @@
             <th scope="row">total_of_special_requests</th>
             <td>{{data_client.total_of_special_requests}}</td>
         </tr>
-
         </tbody>
     </table>
-
 </div>
-
 {% endblock %}

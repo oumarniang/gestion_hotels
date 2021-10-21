@@ -13,6 +13,7 @@
           <th>arrival date year</th>
           <th>arrival date week number</th>
           <th>arrival date day_of month</th>
+          <th>stays in weekend nights</th>
           <th>stays in week nights</th>
           <th class="rotate">adults</th>
           <th class="rotate">children</th>
@@ -32,7 +33,7 @@
       </thead>
       <tbody>
         {% for item in clients_test %}
-        {% set item_data = '{"id":"' ~ item.id ~ '","lead_time":"' ~ item.lead_time ~ '","arrival_date_year":"' ~ item.arrival_date_year ~ '","arrival_date_week_number":"' ~item.arrival_date_week_number~ '","arrival_date_day_of_month":"' ~item.arrival_date_day_of_month~ '","stays_in_week_nights":"' ~item.stays_in_week_nights~ '","adults":"' ~item.adults~ '","children":"' ~item.children|int~ '","babies":"' ~item.babies~ '","is_repeated_guest":"' ~item.is_repeated_guest~ '","previous_cancellations":"' ~item.previous_cancellations~ '","previous_bookings_not_canceled":"' ~item.previous_bookings_not_canceled~ '","booking_changes":"' ~item.booking_changes~ '","agent":"' ~item.agent|int~ '","company":"' ~item.company|int~ '","days_in_waiting_list":"' ~item.days_in_waiting_list~ '","adr":"' ~item.adr~ '","required_car_parking_spaces":"' ~item.required_car_parking_spaces~ '","total_of_special_requests":"' ~item.total_of_special_requests~ '"}' %}
+        {% set item_data = '{"id":"' ~ item.id ~ '","lead_time":"' ~ item.lead_time ~ '","arrival_date_year":"' ~ item.arrival_date_year ~ '","arrival_date_week_number":"' ~item.arrival_date_week_number~ '","arrival_date_day_of_month":"' ~item.arrival_date_day_of_month~ '","stays_in_weekend_nights":"' ~item.stays_in_weekend_nights~ '","stays_in_week_nights":"' ~item.stays_in_week_nights~ '","adults":"' ~item.adults~ '","children":"' ~item.children|int~ '","babies":"' ~item.babies~ '","is_repeated_guest":"' ~item.is_repeated_guest~ '","previous_cancellations":"' ~item.previous_cancellations~ '","previous_bookings_not_canceled":"' ~item.previous_bookings_not_canceled~ '","booking_changes":"' ~item.booking_changes~ '","agent":"' ~item.agent|int~ '","company":"' ~item.company|int~ '","days_in_waiting_list":"' ~item.days_in_waiting_list~ '","adr":"' ~item.adr~ '","required_car_parking_spaces":"' ~item.required_car_parking_spaces~ '","total_of_special_requests":"' ~item.total_of_special_requests~ '"}' %}
         <tr class="item" data-item={{item_data}}>
           <td>
             {{item.id}}
@@ -48,6 +49,9 @@
           </td>
           <td>
             {{item.arrival_date_day_of_month}}
+          </td>
+          <td>
+            {{item.stays_in_weekend_nights}}
           </td>
           <td>
             {{item.stays_in_week_nights}}
@@ -92,7 +96,7 @@
             {{item.total_of_special_requests}}
           </td>
           <td>
-              <a href="{{url_for('main.predictions', data_client=item)}}">
+              <a href="{{url_for('main.predictions')}}">
                 <button class="button is-link is-small">Prédiction</button>
               </a>
           </td>

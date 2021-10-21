@@ -1,13 +1,13 @@
 # main.py
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, Flask,redirect, url_for, session
 from flask_login import login_required, current_user
 import sqlite3 as sql
 import pickle
 import requests
 import json
 import pandas as pd
-import ast
+# import numpy as np
 import flask_monitoringdashboard as dashboard
 
 main = Blueprint('main', __name__)
@@ -54,51 +54,60 @@ def reservations():
         # print(item_dict)
         result_data_list.append(item_dict)
 
-    # create result dictionnary
-    # print(result_data_list)
+    # fermeture connextion db
     conn.close()
 
+    #  conversion json
     clients_json = json.dumps(result_data_list)
-    # print(clients_json)
 
     return render_template('reservations.html', clients_test=result_data_list, clients_json=clients_json )
 
 ## Page de prédictions
-@main.route('/predictions_test', methods = ['POST', 'GET'])
+@main.route('/processing', methods = ['POST', 'GET'])
 @login_required
-def predictions_test():
+def processing():
 
     if request.method == "POST":
-        clicked=request.get_json()
-        print(clicked)
- 
-    return "<p>Hello, World!</p>"
+        # Reception data json 
+        data_client_json=request.get_json()
+        # infos_clients pour rappel affichage
+        infos_client = data_client_json.copy()
 
-## Page de prédictions
-@main.route('/predictions/<data_client>', methods = ['POST', 'GET'])
+        # suppression index
+        del data_client_json['id']
+        #  création dataframe individu à tester
+        df_from_json = pd.DataFrame.from_dict([data_client_json])
+        # print("df_from_json =", df_from_json)
+        # print(df_from_json.columns)
+
+        # ouverture modèle & prédiction
+        model_pred = pickle.load(open('project/data/model.pkl','rb'))
+        predict_result = model_pred.predict(df_from_json)
+        if(predict_result == 0):
+            prediction = "Risque d'annulation faible"
+        else:
+            prediction = "Risque d'annulation élevé"
+
+        session['data_client'] = infos_client
+
+        #  convert numpy int64 to python int
+        pyval = predict_result[0].item()
+        session['predict_result'] = pyval
+        # print(predict_result[0])
+        session['prediction'] = prediction
+
+        return redirect(url_for('main.predictions'), code=302, Response=None)
+
+    return "<p>Erreur POST data</p>"
+    
+## Page affichage prédictions
+@main.route('/predictions')
 @login_required
-def predictions(data_client):
-
-    #  transformation data_client en dataframe
-    sample = ast.literal_eval(data_client)
-    # infos_clients pour rappel affichage
-    infos_client = sample.copy()
-    # suppression index
-    del sample['id']
-    #  création dataframe individu à tester
-    df = pd.DataFrame.from_dict([sample])
-
-    # ouverture modèle & prédiction
-    model_pred = pickle.load(open('project/data/model.pkl','rb'))
-    predict_result = model_pred.predict(df)
-    if(predict_result == 0):
-        prediction = "Risque d'annulation faible"
-    else:
-        prediction = "Risque d'annulation élevé"
-
-    #  render template avec paramètres
-    return render_template('predictions.html', data_client=infos_client, predict_result=predict_result[0], prediction=prediction)
-
+def predictions():
+    data_client = session['data_client'] 
+    predict_result = session['predict_result']      
+    prediction = session['prediction']
+    return render_template('predictions.html', data_client=data_client, predict_result=predict_result, prediction=prediction)
 
 ## Page Accueil
 @main.route('/home')
